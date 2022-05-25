@@ -7,40 +7,40 @@
 
 import Foundation
 
-class NetworkDataFetcher {
+protocol DataFetcher {
+    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void)
+}
+
+class NetworkDataFetcher: DataFetcher {
     
-    var networkService = NetworkService()
+    var networking: Networking
     
-    init(networkService: NetworkService = NetworkService()) {
-        self.networkService = networkService
+    init(networking: Networking = NetworkService()) {
+        self.networking = networking
     }
     
-    func fetchNewMusic(urlString: String, completion: @escaping (AppGroup?) -> Void) {
-        networkService.request(urlString: urlString) { (data, error) in
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            let response = try? decoder.decode(AppGroup.self, from: data)
-            completion(response)
+    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
+        print(T.self)
+        networking.request(urlString: urlString) { data, error in
+            if let error = error {
+                print("Error received requesting data: \(error.localizedDescription)")
+                response(nil)
+            }
+            let decoded = self.decodeJSON(type: T.self, from: data)
+            response(decoded)
         }
     }
     
-    func fetchFreeGames(urlString: String, completion: @escaping (AppGroup?) -> Void) {
-        networkService.request(urlString: urlString) { (data, error) in
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            let response = try? decoder.decode(AppGroup.self, from: data)
-            completion(response)
+    //декодирование полученные JSON данных в любую модель данных
+    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
+        let decoder = JSONDecoder()
+        guard let data = from else { return nil }
+        do {
+            let objects = try decoder.decode(type.self, from: data)
+            return objects
+        } catch let jsonError {
+            print("Failed to decode JSON", jsonError)
+            return nil
         }
     }
-    
-    // декодируем полученные JSON данные в конкретную модель данных
-    func fetchCountry(urlString: String, completion: @escaping ([Country]?) -> Void) {
-        networkService.request(urlString: urlString) { (data, error) in
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            let response = try? decoder.decode([Country].self, from: data)
-            completion(response)
-        }
-    }
-    
 }

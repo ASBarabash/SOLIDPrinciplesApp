@@ -18,6 +18,7 @@
 		4154D511283E4908001F2FF7 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4154D510283E4908001F2FF7 /* CountryModel.swift */; };
 		4154D513283E49E1001F2FF7 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4154D512283E49E1001F2FF7 /* NetworkDataFetcher.swift */; };
 		4154D515283E7D86001F2FF7 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4154D514283E7D86001F2FF7 /* AppGroup.swift */; };
+		4154D517283E89B0001F2FF7 /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4154D516283E89B0001F2FF7 /* DataFetcherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		4154D510283E4908001F2FF7 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		4154D512283E49E1001F2FF7 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		4154D514283E7D86001F2FF7 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		4154D516283E89B0001F2FF7 /* DataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				4154D50F283E481A001F2FF7 /* Models */,
 				4154D50A283E462E001F2FF7 /* NetworkService.swift */,
 				4154D512283E49E1001F2FF7 /* NetworkDataFetcher.swift */,
+				4154D516283E89B0001F2FF7 /* DataFetcherService.swift */,
 				4154D50C283E463D001F2FF7 /* DataStore.swift */,
 			);
 			path = Services;
@@ -174,6 +177,7 @@
 				4154D4F7283E448D001F2FF7 /* AppDelegate.swift in Sources */,
 				4154D511283E4908001F2FF7 /* CountryModel.swift in Sources */,
 				4154D50B283E462E001F2FF7 /* NetworkService.swift in Sources */,
+				4154D517283E89B0001F2FF7 /* DataFetcherService.swift in Sources */,
 				4154D50D283E463D001F2FF7 /* DataStore.swift in Sources */,
 				4154D4F9283E448D001F2FF7 /* SceneDelegate.swift in Sources */,
 				4154D515283E7D86001F2FF7 /* AppGroup.swift in Sources */,

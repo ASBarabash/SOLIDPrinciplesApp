@@ -9,15 +9,11 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    let urlString = "https://raw.githubusercontent.com/Softex-Group/task-mobile/master/test.json"
     
-    let urlFreeGames = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/10/albums.json"
-    
-    let urlNewMusic = "https://rss.applemarketingtools.com/api/v2/ru/music/most-played/10/albums.json"
     
     // Внешние зависимости
 //    var networkService = NetworkService()
-    var nerworkDataFetcher = NetworkDataFetcher()
+    var dataFetcherService = DataFetcherService()
     let dataStore = DataStore()
     
     
@@ -31,16 +27,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nerworkDataFetcher.fetchNewMusic(urlString: urlNewMusic) { newMusic in
-            print(newMusic?.feed.results.first?.name)
+        dataFetcherService.fetchCountry { countries in
+            print(countries?.first?.Name)
         }
         
-        nerworkDataFetcher.fetchFreeGames(urlString: urlFreeGames) { freeGames in
+        dataFetcherService.fetchFreeGames { freeGames in
             print(freeGames?.feed.results.first?.name)
         }
         
-        nerworkDataFetcher.fetchCountry(urlString: urlString) { countries in
-            print(countries?.first?.Name)
+        dataFetcherService.fetchNewMusic { newMusic in
+            print(newMusic?.feed.results.first?.name)
         }
     }
     
