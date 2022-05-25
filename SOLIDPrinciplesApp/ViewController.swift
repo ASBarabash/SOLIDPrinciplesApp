@@ -7,18 +7,17 @@
 
 import UIKit
 
-struct Country: Decodable {
-    var Id: String
-    var Time: String
-    var Name: String
-    var Image: String?
-}
 
 class ViewController: UIViewController {
     let urlString = "https://raw.githubusercontent.com/Softex-Group/task-mobile/master/test.json"
     
+    let urlFreeGames = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/10/albums.json"
+    
+    let urlNewMusic = "https://rss.applemarketingtools.com/api/v2/ru/music/most-played/10/albums.json"
+    
     // Внешние зависимости
-    var networkService = NetworkService()
+//    var networkService = NetworkService()
+    var nerworkDataFetcher = NetworkDataFetcher()
     let dataStore = DataStore()
     
     
@@ -31,11 +30,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.layer.cornerRadius = saveButton.frame.width / 2
-
-        networkService.dataFetcher(urlString: urlString)
+        
+        nerworkDataFetcher.fetchNewMusic(urlString: urlNewMusic) { newMusic in
+            print(newMusic?.feed.results.first?.name)
+        }
+        
+        nerworkDataFetcher.fetchFreeGames(urlString: urlFreeGames) { freeGames in
+            print(freeGames?.feed.results.first?.name)
+        }
+        
+        nerworkDataFetcher.fetchCountry(urlString: urlString) { countries in
+            print(countries?.first?.Name)
+        }
     }
     
+    override func viewDidLayoutSubviews() {
+        saveButton.layer.cornerRadius = saveButton.frame.width / 2
+    }
     // MARK: - Business logic
     
     // Обработка имени
