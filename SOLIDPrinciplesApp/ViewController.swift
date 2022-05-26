@@ -38,6 +38,10 @@ class ViewController: UIViewController {
         dataFetcherService.fetchNewMusic { newMusic in
             print(newMusic?.feed.results.first?.name)
         }
+        
+        dataFetcherService.fetchLocalCoutry { localCountries in
+            print(localCountries?.last?.Name)
+        }
     }
     
     override func viewDidLayoutSubviews() {
